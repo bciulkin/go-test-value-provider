@@ -23,5 +23,5 @@ func UpperLimitedInt(upperLimit int) int {
     panic(fmt.Sprintf("Too big intiger. Max int is: %d", math.MaxInt))
   }
 
-  return rand.Int()
+  return rand.Intn(upperLimit)
 }
