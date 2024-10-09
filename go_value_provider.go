@@ -6,6 +6,8 @@ import (
   "math"
 )
 
+const letterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
 func Bool() bool {
   if rand.Int() % 2 == 0 {
     return true
@@ -24,4 +26,20 @@ func UpperLimitedInt(upperLimit int) int {
   }
 
   return rand.Intn(upperLimit)
+}
+
+func String() string {
+  b := make([]byte, 10)
+  for i := range b {
+    b[i] = letterBytes[rand.Intn(len(letterBytes))] // Pick random character
+  }
+  return string(b)
+}
+
+func StringN(length int) string {
+  b := make([]byte, length)
+  for i := range b {
+    b[i] = letterBytes[rand.Intn(len(letterBytes))] // Pick random character
+  }
+  return string(b)
 }
