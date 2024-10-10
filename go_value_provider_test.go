@@ -13,16 +13,44 @@ func TestInt(t *testing.T) {
   assert.LessOrEqual(t, result, math.MaxInt, "Result should be less or equal than maxInt")
 }
 
-func TestUpperLimitedInt(t *testing.T) {
+func TestIntN(t *testing.T) {
   t.Run("successful", func(t *testing.T) {
-    result := UpperLimitedInt(123)
+    result := IntN(123)
 
     assert.LessOrEqual(t, result, 123, "Result should be less or equal than limited value")
     assert.GreaterOrEqual(t, result, math.MinInt, "Result should be greater or equal than minInt")
   })
+}
 
-  t.Run("failure", func(t *testing.T) {
-    assert.Panics(t, func() { UpperLimitedInt(0) }, "Code did not panic.")
+func TestFloat32(t *testing.T) {
+  result := Float32()
+
+  assert.GreaterOrEqual(t, result, float32(0.0), "Result should be greater or equal than min float")
+  assert.LessOrEqual(t, result, float32(math.MaxFloat32), "Result should be less or equal than maxFloat32")
+}
+
+func TestFloat32N(t *testing.T) {
+  t.Run("successful", func(t *testing.T) {
+    result := Float32N(float32(123.0))
+
+    assert.LessOrEqual(t, result, float32(123.0), "Result should be less or equal than limited value")
+    assert.GreaterOrEqual(t, result, float32(0.0), "Result should be greater or equal than min float")
+  })
+}
+
+func TestFloat64(t *testing.T) {
+  result := Float64()
+
+  assert.GreaterOrEqual(t, result, float64(0.0), "Result should be greater or equal than min float")
+  assert.LessOrEqual(t, result, math.MaxFloat64, "Result should be less or equal than maxFloat64")
+}
+
+func TestFloat64N(t *testing.T) {
+  t.Run("successful", func(t *testing.T) {
+    result := Float64N(float64(123.0))
+
+    assert.LessOrEqual(t, result, float64(123.0), "Result should be less or equal than limited value")
+    assert.GreaterOrEqual(t, result, float64(0.0), "Result should be greater or equal than minInt")
   })
 }
 
