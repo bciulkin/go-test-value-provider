@@ -9,11 +9,7 @@ import (
 const letterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 
 func Bool() bool {
-  if rand.Int() % 2 == 0 {
-    return true
-  } else {
-    return false
-  }
+  return IntN(2) == 1
 }
 
 func Int() int {
@@ -37,7 +33,7 @@ func Float32N(upperLimit float32) float32 {
     panic(fmt.Sprintf("Too big float32. Max float32 is: %f", math.MaxFloat32))
   }
 
-  return rand.Float32() * upperLimit
+  return Float32() * upperLimit
 }
 
 func Float64() float64 {
@@ -49,16 +45,12 @@ func Float64N(upperLimit float64) float64 {
     panic(fmt.Sprintf("Too big float64. Max float64 is: %f", math.MaxFloat64))
   }
 
-  return rand.Float64() * upperLimit
+  return Float64() * upperLimit
 }
 
 
 func String() string {
-  b := make([]byte, 10)
-  for i := range b {
-    b[i] = letterBytes[rand.Intn(len(letterBytes))]
-  }
-  return string(b)
+  return StringN(10)
 }
 
 func StringN(length int) string {
