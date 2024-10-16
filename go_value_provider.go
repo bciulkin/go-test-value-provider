@@ -24,6 +24,10 @@ func IntN(upperLimit int) int {
   return rand.Intn(upperLimit)
 }
 
+func IntNM(lowerLimit, upperLimit int) int {
+  return IntN(upperLimit) + lowerLimit
+}
+
 func Float32() float32 {
   return rand.Float32()
 }
@@ -61,4 +65,14 @@ func StringN(length int) string {
   return string(b)
 }
 
+func ByteArrayN(n int) []byte {
+  b := make([]byte, n)
+  for i := range b {
+    b[i] = byte(IntN(256))
+  }
+  return b
+}
 
+func ByteArray() []byte {
+  return ByteArrayN(IntNM(1, 100))
+}

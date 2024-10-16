@@ -22,6 +22,16 @@ func TestIntN(t *testing.T) {
   })
 }
 
+func TestIntNM(t *testing.T) {
+  t.Run("successful", func(t *testing.T) {
+    result := IntNM(1,10)
+
+    assert.LessOrEqual(t, result, 10, "Result should be less or equal than limited value")
+    assert.GreaterOrEqual(t, result, 1, "Result should be greater or equal than minInt")
+  })
+}
+
+
 func TestFloat32(t *testing.T) {
   result := Float32()
 
@@ -67,3 +77,22 @@ func TestString(t *testing.T) {
     assert.Equal(t, len(result), 12, "Result should be less or equal than limited value")
   })
 }
+
+func TestByteArray(t *testing.T) {
+  t.Run("successful byteArray", func(t *testing.T) {
+    result := ByteArray()
+
+    assert.LessOrEqual(t, len(result), 100, "Result should be less than 100")
+    assert.GreaterOrEqual(t, len(result), 1, "Result should be greated than 1")
+  })
+}
+
+func TestByteArrayN(t *testing.T) {
+  t.Run("successful byteArrayN", func(t *testing.T) {
+    result := ByteArrayN(123)
+
+    assert.LessOrEqual(t, len(result), 123, "Result should be less than 100")
+    assert.GreaterOrEqual(t, len(result), 1, "Result should be greated than 1")
+  })
+}
+
