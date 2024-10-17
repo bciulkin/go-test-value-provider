@@ -29,6 +29,10 @@ func TestIntNM(t *testing.T) {
     assert.LessOrEqual(t, result, 10, "Result should be less or equal than limited value")
     assert.GreaterOrEqual(t, result, 1, "Result should be greater or equal than minInt")
   })
+
+  t.Run("panic", func(t *testing.T) {
+    assert.PanicsWithValue(t, "Min is bigger than max.", func() {IntNM(10,1)}, "didn't panic")
+  })
 }
 
 

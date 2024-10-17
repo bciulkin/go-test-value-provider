@@ -6,7 +6,10 @@ import (
   "math"
 )
 
-const letterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+const mixedCaseLetterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+const numericString = "0123456789"
+const lowerCaseLetterBytes = "abcdefghijklmnopqrstuvwxyz"
+const upperCaseLetterBytes = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 func Bool() bool {
   return IntN(2) == 1
@@ -16,40 +19,43 @@ func Int() int {
   return rand.Int()
 }
 
-func IntN(upperLimit int) int {
-  if upperLimit > math.MaxInt {
+func IntN(max int) int {
+  if max > math.MaxInt {
     panic(fmt.Sprintf("Too big intiger. Max int is: %d", math.MaxInt))
   }
 
-  return rand.Intn(upperLimit)
+  return rand.Intn(max)
 }
 
-func IntNM(lowerLimit, upperLimit int) int {
-  return IntN(upperLimit) + lowerLimit
+func IntNM(min, max int) int {
+  if min > max {
+    panic("Min is bigger than max.")
+  }
+  return IntN(max) + min
 }
 
 func Float32() float32 {
   return rand.Float32()
 }
 
-func Float32N(upperLimit float32) float32 {
-  if upperLimit > math.MaxFloat32 {
+func Float32N(max float32) float32 {
+  if max > math.MaxFloat32 {
     panic(fmt.Sprintf("Too big float32. Max float32 is: %f", math.MaxFloat32))
   }
 
-  return Float32() * upperLimit
+  return Float32() * max
 }
 
 func Float64() float64 {
   return rand.Float64()
 }
 
-func Float64N(upperLimit float64) float64 {
-  if upperLimit > math.MaxFloat64 {
+func Float64N(max float64) float64 {
+  if max > math.MaxFloat64 {
     panic(fmt.Sprintf("Too big float64. Max float64 is: %f", math.MaxFloat64))
   }
 
-  return Float64() * upperLimit
+  return Float64() * max
 }
 
 
@@ -60,7 +66,7 @@ func String() string {
 func StringN(length int) string {
   b := make([]byte, length)
   for i := range b {
-    b[i] = letterBytes[rand.Intn(len(letterBytes))]
+    b[i] = mixedCaseLetterBytes[rand.Intn(len(mixedCaseLetterBytes))]
   }
   return string(b)
 }
