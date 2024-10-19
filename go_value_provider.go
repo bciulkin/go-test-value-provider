@@ -31,7 +31,7 @@ func IntNM(min, max int) int {
   if min > max {
     panic("Min is bigger than max.")
   }
-  return IntN(max) + min
+  return IntN(max - min) + min
 }
 
 func Float32() float32 {
